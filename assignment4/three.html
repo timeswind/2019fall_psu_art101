@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=yes">
+    <style type="text/css">
+        body {
+            background: hsl(0, 0%, 9%);
+            margin: 0;
+        }
+
+        canvas {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            /* double the stretch then scale in half to preserve responsiveness and image sharpness in retina */
+            max-width: 200%;
+            max-height: 200%;
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+        h1 {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            /* double the stretch then scale in half to preserve responsiveness and image sharpness in retina */
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+    </style>
+    <title>Assignment 4 - Three</title>
+</head>
+
+<script>
+    window.addEventListener("load", app);
+
+    function app() {
+        var C = document.querySelector("canvas"),
+            c = C.getContext("2d"),
+            S = 2,
+            W = C.width,
+            H = C.height;
+
+        C.width = W * S;
+        C.height = H * S;
+        c.scale(S, S);
+
+        var arrowSize = 80,
+            arrowPoints = [
+                // points relative to center
+                { x: -0.25, y: -0.5 },
+                { x: 0.25, y: -0.5 },
+                { x: 0.25, y: 0 },
+                { x: 0.5, y: 0 },
+                { x: 0, y: 0.5 },
+                { x: -0.5, y: 0 },
+                { x: -0.25, y: 0 },
+                { x: -0.25, y: -0.5 }
+            ],
+            cols = 6,
+            rows = 5,
+            colorA = "hsl(0,0%,14%)",
+            colorB = "hsl(0,0%,86%)",
+            step = 0,
+            maxSteps = 180,
+            phase = 0,
+            turnPoint = maxSteps / 2,
+            toBezierCurve = t => {
+                let y1 = 0,
+                    y2 = 0,
+                    y3 = 1,
+                    y4 = 1,
+                    cY = 3 * (y2 - y1),
+                    bY = 3 * (y3 - y2) - cY,
+                    aY = y4 - y1 - cY - bY,
+                    y = (aY * t ** 3) + (bY * t ** 2) + (cY * t) + y1;
+
+                return y;
+            },
+            updateArrows = () => {
+                let isPhase1 = phase == 1,
+                    progress = (step % turnPoint) / turnPoint,
+                    angle = toBezierCurve(progress) * 180;
+
+                if (isPhase1)
+                    angle = 360 - angle;
+
+                // determine background fill
+                c.fillStyle = isPhase1 ? colorB : colorA;
+                c.fillRect(0, 0, W, H);
+
+                // then arrow color
+                c.fillStyle = isPhase1 ? colorA : colorB;
+
+                // draw each arrow
+                for (let row = -1; row <= rows; ++row) {
+                    for (let col = 0; col < cols; ++col) {
+                        let halfArrow = arrowSize / 2,
+                            center = {
+                                x: arrowSize * col,
+                                y: halfArrow + arrowSize * row + (step / maxSteps * arrowSize)
+                            };
+
+                        if (isPhase1) {
+                            center.x += halfArrow;
+                            center.y -= halfArrow;
+                        }
+
+                        c.save();
+                        c.beginPath();
+                        c.translate(center.x, center.y);
+                        c.rotate(angle * Math.PI / 180);
+                        arrowPoints.forEach((e, i) => {
+                            let point = {
+                                x: arrowSize * e.x,
+                                y: arrowSize * e.y
+                            };
+                            if (i == 0)
+                                c.moveTo(point.x, point.y);
+                            else
+                                c.lineTo(point.x, point.y);
+                        });
+                        c.fill();
+                        c.translate(-center.x, -center.y);
+                        c.closePath();
+                        c.restore();
+                    }
+                }
+
+                // animation progress
+                step += 1;
+                if (step >= maxSteps)
+                    step = 0;
+
+                phase = step >= turnPoint ? 1 : 0;
+            },
+            render = () => {
+                updateArrows();
+                requestAnimationFrame(render);
+            };
+
+        render();
+    }
+</script>
+
+<body>
+
+    <canvas width="400" height="400"></canvas>
+    <h1 style="font-size:180px;color: #fff;text-align: center;">Loss Direction?</h1>
+
+</body>
+
+</html>

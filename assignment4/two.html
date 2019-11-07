@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://kit.fontawesome.com/f59b1c2fd2.js" crossorigin="anonymous"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=yes">
+    <style type="text/css">
+        body {
+            --time: 12s;
+            --count: 13;
+            --spokes: 6;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        body .circles {
+            -webkit-animation: rotate var(--time) linear infinite;
+            animation: rotate var(--time) linear infinite;
+        }
+
+        body .circles,
+        body .circles .circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        body .circles .circle {
+            width: 50vmin;
+            height: 50vmin;
+            border-radius: 50%;
+            -webkit-animation: rotate var(--time) linear infinite;
+            animation: rotate var(--time) linear infinite;
+            -webkit-animation-delay: calc(var(--animation-delay, 0) * var(--time)/var(--count));
+            animation-delay: calc(var(--animation-delay, 0) * var(--time)/var(--count));
+        }
+
+        body .circles .circle .inner {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            width: 25vmin;
+            height: 25vmin;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            animation: rotate calc(var(--time)/var(--spokes)) ease infinite reverse;
+            -webkit-animation-delay: calc(var(--animation-delay, 0) * var(--time)/var(--count));
+            animation-delay: calc(var(--animation-delay, 0) * var(--time)/var(--count));
+        }
+
+        body .circles .circle .inner .dot {
+            position: absolute;
+            bottom: 0%;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            width: 5vmin;
+            height: 5vmin;
+        }
+
+        body .circles .circle .inner .dot:before {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            font-size: 8vmin;
+        }
+
+        @-webkit-keyframes rotate {
+            0% {
+                -webkit-transform: translate(-50%, -50%) rotate(0deg);
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: translate(-50%, -50%) rotate(360deg);
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                -webkit-transform: translate(-50%, -50%) rotate(0deg);
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: translate(-50%, -50%) rotate(360deg);
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+    </style>
+    <title>Assignment 4 - Two</title>
+</head>
+
+<body>
+    <h1 style="font-size:80px;text-align: center;margin-top: 500px">GET ATTENTION!</h1>
+    <div class="circles">
+        <div class="circle" style="--animation-delay:-1;">
+            <div class="inner">
+                <div class="dot fas fa-arrow-right"></div>
+            </div>
+        </div>
+        <div class="circle" style="--animation-delay:-2;">
+            <div class="inner">
+                <div class="dot fas fa-arrow-right"></div>
+            </div>
+        </div>
+        <div class="circle" style="--animation-delay:-3;">
+            <div class="inner">
+                <div class="dot fas fa-arrow-right"></div>
+            </div>
+        </div>
+        <div class="circle" style="--animation-delay:-4;">
+            <div class="inner">
+                <div class="dot fas fa-arrow-right"></div>
+            </div>
+        </div>
+        <div class="circle" style="--animation-delay:-5;">
+            <div class="inner">
+                <div class="dot fas fa-arrow-right"></div>
+            </div>
+        </div>
+        <div class="circle" style="--animation-delay:-6;">
+            <div class="inner">
+                <div class="dot fas fa-arrow-right"></div>
+            </div>
+        </div>
+        <div class="circle" style="--animation-delay:-7;">
+            <div class="inner">
+                <div class="dot fas fa-arrow-right"></div>
+            </div>
+        </div>
+        <div class="circle" style="--animation-delay:-8;">
+            <div class="inner">
+                <div class="dot fas fa-arrow-right"></div>
+            </div>
+        </div>
+        <div class="circle" style="--animation-delay:-9;">
+            <div class="inner">
+                <div class="dot fas fa-arrow-right"></div>
+            </div>
+        </div>
+        <div class="circle" style="--animation-delay:-10;">
+            <div class="inner">
+                <div class="dot fas fa-arrow-right"></div>
+            </div>
+        </div>
+        <div class="circle" style="--animation-delay:-11;">
+            <div class="inner">
+                <div class="dot fas fa-arrow-right"></div>
+            </div>
+        </div>
+        <div class="circle" style="--animation-delay:-12;">
+            <div class="inner">
+                <div class="dot fas fa-arrow-right"></div>
+            </div>
+        </div>
+        <div class="circle" style="--animation-delay:-13;">
+            <div class="inner">
+                <div class="dot fas fa-arrow-right"></div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

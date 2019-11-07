@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width,user-scalable=yes">
+    <style type="text/css">
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.container {
+  max-height: 100vh;
+  overflow-y: scroll;
+  position: relative;
+  -ms-scroll-snap-type: y mandatory;
+      scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.headline {
+  align-items: center;
+  background-color: var(--color);
+  display: flex;
+  font-family: "Lexend Deca", sans-serif;
+  font-weight: 700;
+  font-size: calc(1rem + 15vmin);
+  height: 100vh;
+  justify-content: center;
+  overflow: hidden;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  scroll-snap-align: start;
+  width: 100vw;
+}
+.headline:nth-child(1) {
+  --color: #f9ca24;
+}
+
+    </style>
+      <title>Assignment 4 - One</title>
+</head>
+
+<body>
+    <main class="container">
+        <h2 data-splitting class="headline headline--jump">This is YELLOW<p style="color: #fff">#f9ca24</p></h2>
+        
+    </main>
+
+
+</body>
+
+</html>
